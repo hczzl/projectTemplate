@@ -1,0 +1,104 @@
+spring:
+  profiles: dev
+  
+  datasource:
+    #主数据源
+    master:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://120.24.149.172:3309/test
+      username: root
+      password: Glch_P@ssw0rd
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: glch.213
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+      wall:
+        config:
+          multi-statement-allow: true
+    #hive数据源配置
+    hive:
+      hive-master:
+        enabled: false
+        url: jdbc:hive2://192.168.10.131:10009/default
+        username: admin
+        password: admin
+        driver-class-name: org.apache.hive.jdbc.HiveDriver
+        initial-size: 10
+        max-active: 100
+        min-idle: 10
+        max-wait: 60000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        timeBetweenEvictionRunsMillis: 60000
+        min-evictable-idle-time-millis: 300000
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+    #postgresql数据源配置
+    storage:
+      enabled: false
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://127.0.0.1:5432/postgres
+      username: postgres
+      password: postgres
+  #Redis服务配置
+  redis:
+    #Redis服务地址
+    host: 127.0.0.1
+    #Redis服务器连接端口
+    port: 6379
+    #密码 默认为空
+    password:
+    #连接超时时间（毫秒）
+    #timeout: 50
+    #redis数据库的schema数量
+    database: 0
+    pool:
+      #连接池最大连接数
+      tomcat.max-active: 8
+      #连接池最大阻塞等待时间（使用负值表示没有限制）
+      tomcat.max-wait: -1
+      #连接池中的最大空闲连接
+      tomcat.max-idle: 8
+      #连接池中的最小空闲连接
+      tomcat.min-idle: 0
+phoneMsg:
+  msgServerUrl: http://no
+ftp:
+  #url
+  url: 192.168.10.117
+  # 登陆名
+  userName: eisdev
+  # 密码
+  password: 123456
+  #ip
+  ip: 192.168.10.117
+  # 端口
+  port: 21
+  # 本地磁盘临时路径
+  localDiskTmpPath: D:/eisdev/ftp/
+
+#token过期时间
+expireTime: 30
+#CSV文件本地地址
+csvFilePath: E:/CEC/kettle/csv/
+

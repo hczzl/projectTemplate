@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glch.system.user.mapper.UserRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.glch.system.user.entity.UserRole">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="deparent_id" property="deparentId"/>
+        <result column="creator" property="creator"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, role_id, deparent_id, creator, create_time
+    </sql>
+
+
+    <select id="queryByUserId" parameterType="java.lang.String" resultType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user_role
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

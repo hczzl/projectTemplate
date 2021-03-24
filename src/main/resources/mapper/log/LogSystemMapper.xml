@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glch.log.mapper.LogSystemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.glch.log.entity.LogSystem">
+        <id column="id" property="id" />
+        <result column="ip" property="ip" />
+        <result column="access_url" property="accessUrl" />
+        <result column="params" property="params" />
+        <result column="description" property="description" />
+        <result column="src" property="src" />
+        <result column="log_level" property="logLevel" />
+        <result column="error_info" property="errorInfo" />
+        <result column="succ" property="succ" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
+        <result column="last_update_user" property="lastUpdateUser" />
+        <result column="last_update_time" property="lastUpdateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ip, access_url AS accessUrl, params, description, src, log_level AS logLevel, error_info AS errorInfo, succ, creator, create_time AS createTime, last_update_user AS lastUpdateUser, last_update_time AS lastUpdateTime
+    </sql>
+
+    <select id="queryLogSystemList"  parameterType="Map" resultType="Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM t_log_system
+        WHERE 1=1
+        <if test="startTime!=null and startTime!=''">
+            and create_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and  #{endTime} >= create_time
+        </if>
+        <if test="creator!=null and creator!=''">
+            and creator =  #{creator}
+        </if>
+        <if test="ip!=null and ip!=''">
+            and ip =  #{ip}
+        </if>
+        <if test="description!=null and description!=''">
+            and instr(description, #{description}) > 0
+        </if>
+        order by create_time desc
+    </select>
+
+    <select id="queryAllLogSystemList"  parameterType="Map" resultType="Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM t_log_system
+        WHERE 1=1
+        <if test="startTime!=null and startTime!=''">
+            and create_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and  #{endTime} >= create_time
+        </if>
+        <if test="creator!=null and creator!=''">
+            and creator =  #{creator}
+        </if>
+        <if test="ip!=null and ip!=''">
+            and ip =  #{ip}
+        </if>
+        <if test="description!=null and description!=''">
+            and instr(description, #{description}) > 0
+        </if>
+        order by create_time desc
+    </select>
+
+    <insert id="insertLog" parameterType="com.glch.log.entity.LogSystem">
+        insert into t_log_system
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="ip != null and ip !=''">ip,</if>
+            <if test="accessUrl != null and accessUrl != '' ">access_url,</if>
+            <if test="params != null and params != '' ">params,</if>
+            <if test="description != null and description != '' ">description,</if>
+            <if test="src != null and src != '' ">src,</if>
+            <if test="logLevel != null and logLevel != '' ">log_level,</if>
+            <if test="errorInfo != null and errorInfo != '' ">error_info,</if>
+            <if test="succ != null ">succ,</if>
+            <if test="creator != null and creator != '' ">creator,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="lastUpdateUser != null and lastUpdateUser != '' ">last_update_user,</if>
+            <if test="lastUpdateTime != null and lastUpdateTime != '' ">last_update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            REPLACE(UUID(),'-',''),
+            <if test="ip != null and ip !=''">#{ip},</if>
+            <if test="accessUrl != null and accessUrl != '' ">#{accessUrl},</if>
+            <if test="params != null and params != '' ">#{params},</if>
+            <if test="description != null and description != '' ">#{description},</if>
+            <if test="src != null and src != '' ">#{src},</if>
+            <if test="logLevel != null and logLevel != '' ">#{logLevel},</if>
+            <if test="errorInfo != null and errorInfo != '' ">#{errorInfo},</if>
+            <if test="succ != null ">#{succ},</if>
+            <if test="creator != null and creator != '' ">#{creator},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="lastUpdateUser != null and lastUpdateUser != '' ">#{lastUpdateUser},</if>
+            <if test="lastUpdateTime != null and lastUpdateTime != '' ">#{lastUpdateTime},</if>
+        </trim>
+    </insert>
+</mapper>

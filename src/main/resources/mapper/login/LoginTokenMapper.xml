@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glch.login.mapper.LoginTokenMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.glch.login.entity.LoginToken">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="login_ip" property="loginIp"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="creator" property="creator"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, login_name AS loginName, login_ip AS loginIp, expire_time AS expireTime, creator, create_time AS createTime
+    </sql>
+    <delete id="deleteToken" parameterType="java.lang.String">
+        DELETE FROM t_login_token WHERE id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insertToken" parameterType="com.glch.login.entity.LoginToken">
+        INSERT INTO t_login_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">id,</if>
+            <if test="loginName !=null and loginName !=''">login_name,</if>
+            <if test="loginIp !=null and loginIp !=''">login_ip,</if>
+            <if test="creator !=null and creator !=''">creator,</if>
+            <if test="createTime !=null ">create_time</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">#{id},</if>
+            <if test="loginName !=null and loginName !=''">#{loginName},</if>
+            <if test="loginIp !=null and loginIp !=''">#{loginIp},</if>
+            <if test="creator !=null and creator !=''">#{creator},</if>
+            <if test="createTime !=null ">#{createTime}</if>
+        </trim>
+    </insert>
+    <select id="selectTokenByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_login_token
+        WHERE login_name = #{loginName}
+    </select>
+    <select id="getLoginToken" parameterType="java.lang.String" resultType="com.glch.login.entity.LoginToken">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_login_token
+        WHERE id = #{id}
+    </select>
+</mapper>

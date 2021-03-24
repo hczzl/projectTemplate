@@ -1,0 +1,63 @@
+#激活哪一个环境的配置文件
+spring:
+  profiles:
+    active: dev
+    include: wx_serv
+  http: 
+    multipart:
+    enabled: true
+    maxFileSize: 100MB
+    maxRequestSize: 120MB
+server:
+  port: 9089
+  
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.glch.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 1
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+#    capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置
+    logic-delete-value: -1
+    logic-not-delete-value: 0
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    logPrefix: dao.
+# socket通信配置
+socket:
+  server:
+     port: 8211
+  client:
+    port: 8211
+    ip: 128.0.0.190
+
+#过滤器
+myfilter:
+      unFilterUrls:
+         /
+       - /login/
+       - /logout
+       - /ftp/FtpController/download
+       - /druid/
+       - /swagger
+       - /error
+       - /v2/api-docs
+       - /webjars
