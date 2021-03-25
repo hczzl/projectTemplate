@@ -42,6 +42,7 @@ public class Test {
     }
 
 
+
     public static List<Pair<String, String>> ll(List<String> list) {
         // 提交计算List的大小
         // List<Pair<String, String>> resultList = Lists.newArrayListWithExpectedSize(list.size() * list.size() / 2);
