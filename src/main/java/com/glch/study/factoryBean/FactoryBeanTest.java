@@ -1,4 +1,4 @@
-package com.glch.study;
+package com.glch.study.factoryBean;
 
 import com.glch.system.User;
 import org.springframework.beans.factory.FactoryBean;
