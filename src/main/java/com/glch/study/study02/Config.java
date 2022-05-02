@@ -1,7 +1,7 @@
 package com.glch.study.study02;
 
-import com.glch.study.study02.bean.UserService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @description
  */
 @Configuration
+@ComponentScan
 public class Config {
     @Bean
     public UserService userService() {

@@ -1,4 +1,4 @@
-package com.glch.study.study02.bean;
+package com.glch.study.study02.processor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;

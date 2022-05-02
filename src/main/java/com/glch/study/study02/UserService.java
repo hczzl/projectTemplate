@@ -1,4 +1,4 @@
-package com.glch.study.study02.bean;
+package com.glch.study.study02;
 
 /**
  * @author zzl
@@ -6,5 +6,6 @@ package com.glch.study.study02.bean;
  * @description
  */
 public class UserService  {
+
 
 }
