@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Date 2022/5/2
  * @description
  */
-@Component
+//@Component
 public class MySmartInitializingSingleton implements SmartInitializingSingleton {
     @Override
     public void afterSingletonsInstantiated() {

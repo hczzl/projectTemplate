@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Date 2022/5/2
  * @description
  */
-@Component
+//@Component
 public class ContextRefreshEventListener {
     @EventListener(ContextRefreshedEvent.class)
     public void onApplicationEvent(ContextRefreshedEvent context) {
