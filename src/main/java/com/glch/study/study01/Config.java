@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2022/5/1
  * @description
  */
-@Configuration
+//@Configuration
 public class Config {
     @Bean(initMethod = "init2", destroyMethod = "destroy2")
     public UserService userService() {

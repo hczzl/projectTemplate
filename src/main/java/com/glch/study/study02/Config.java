@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Import;
  * @Date 2022/5/1
  * @description
  */
-@Configuration
-@ComponentScan
-@Import(UserImport.class)
+//@Configuration
+//@ComponentScan
+//@Import(UserImport.class)
 public class Config {
     @Bean
     public UserService userService() {
